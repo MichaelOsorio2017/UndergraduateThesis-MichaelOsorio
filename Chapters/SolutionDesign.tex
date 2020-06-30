@@ -6,6 +6,15 @@
 
 \section{General Approach} \label{sec:generalApproach}
 
+
+As expected, para cumplir con el objetivo general de esta tesis se deben cumplir con los objetivos especificos, una vez estos sean completados a cabalidad entonces se tiene el objetivos general completado.
+La idea es que estos objetivos especificos lleven o ayuden a llegar al cumplimiento de este objetivo general.
+Se debe explicar cómo se cumplió con cada uno de ellos y al final explicar cómo se llegó a cumplir con el objetivo general
+
+Explicar la creación de las otras 2 herramientas y cómo se usaron, para qué fueron creadas y cómo es la idea detrás de ellas.
+
+
+
 With the purpose of enabling the execution of software engineering tasks at APK level, we propose a three phase process depicted in Figure \ref{fig:proposeApproach}. The first phase consists of APK processing in order to generate models of the application, and the second phase consists of using those models by a certain module that represent a software engineering task desired by users. The final phase consists in rebuilding the APK when required, as in the case of mutation testing or app instrumentation for dynamic analysis. Note that enabling automated software engineering tasks at APK level is our long term goal, therefore, rebuilding the APK (but whitout decompiling the app to get the source code) is a required step in our approach.
 
 \textbf{APK processing.} The first step during the model generation is  decoding an APK file to be able to extract the Android opcodes and resources. Note that an APK is a zip file that contains resources files and a classes file that include the opcodes in DEX format for all the classes belonging to an Android app (including libraries). Based on the wide usage of SMALI as intermediate representation (top 2 according to Li \textit{et. al.,} \cite{li:IST2017}) and that it keeps about 97\% of the information in an APK  \cite{arnatovich2014empirical,arnatovich2018comparison}, we propose it as the representation used for the models extraction. There are already parsers and lexers for SMALI which allows the extraction of abstract syntax trees (ASTs). Concerning the textual information available in resources files, it can be easily extracted because of the XML nature of those files in Android. Note that extracting SMALI code does not require de-compilation to original source code (\textit{e.g.,} Java) which is time consuming and prone to de-compilation errors.
@@ -65,54 +74,6 @@ mvn package
 \end{minipage}\\
 
 After that, the  jar file called MutAPK-<version>.jar will be located in the \textit{target} folder. That file can be relocated and used in other places. 
-
-\begin{minipage}{\linewidth}
-	\begin{lstlisting}[language={sh}, label={lst:ccrM}, caption={Console command to run MutAPK}, numbers=none]
-java -jar MutAPK-<version>.jar <APKPath> <AppPackage> <OutputFolder> <ExtraComponentFolder> <operatorsDir> <multithread>
-	\end{lstlisting}
-\end{minipage}\\
-
-To run it, the previous command must be used (Listing \ref{lst:ccrM}),  where
-\begin{enumerate}
-	\item \textbf{<APKPath>} is the path to the app's APK
-	\item \textbf{<APKPackage>} is the app package used to identify the code that belongs to the app (not the libraries)
-	\item \textbf{<OutputFolder>} is the path to the folder where all the mutants will be generated.
-	\item \textbf{<ExtraComponentFolder>} is the path to the folder that has the extra libraries used by MutAPK
-	\item \textbf{<operatorsDir>} is the path to the \textit{operators.properties} folder, that describes the operators that must be used to generate mutants
-	\item \textbf{<multithread>} boolean value, defines if MutAPK must be executed using multiple threads
-\end{enumerate}
-\begin{minipage}{\textwidth}
-	\begin{lstlisting}[language={sh}, label={lst:eompa}, caption={Example Output of MutAPK for PhotoStream app}, numbers=none]
-Amount Mutants	Mutation Operator
-1		OOM_LARGE_IMAGE
-3		NULL_INTENT
-5		NULL_OUTPUT_STREAM
-1		INVALID_FILE_PATH
-5		INVALID_LABEL
-19		NULL_VALUE_INTENT_PUT_EXTRA
-7		INVALID_COLOR
-9		FINDVIEWBYID_RETURNS_NULL
-19		INVALID_KEY_INTENT_PUT_EXTRA
-5		LENGTHY_GUI_CREATION
-8		VIEW_COMPONENT_NOT_VISIBLE
-3		NULL_INPUT_STREAM
-0		SDK_VERSION
-7		INVALID_ACTIVITY_PATH
-8		INVALID_VIEW_FOCUS
-2		CLOSING_NULL_CURSOR
-39		WRONG_STRING_RESOURCE
-3		WRONG_MAIN_ACTIVITY
-1072		NULL_METHOD_CALL_ARGUMENT
-4		NULL_BACKEND_SERVICE_RETURN
-2		LENGTHY_GUI_LISTENER
-9		INVALID_ID_FINDVIEW
-7		ACTIVITY_NOT_DEFINED
-5		MISSING_PERMISSION_MANIFEST
-2		LENGTHY_BACKEND_SERVICE
-3		DIFFERENT_ACTIVITY_INTENT_DEFINITION
-Total Locations: 1248
-	\end{lstlisting}
-\end{minipage}\\
 
 When the command is executed in the console ,  the selected operators and the amount of mutants that are going to be generated for each operator (Listing \ref{lst:eompa}) are logged. Additionally, when all mutants are generated a log of the mutation process can be found at the Output Folder defined in the command. This log allows testers to identify what was the mutation applied on each mutant.
 
