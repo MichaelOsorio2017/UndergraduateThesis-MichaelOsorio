@@ -6,45 +6,54 @@
 
 \section{General Approach} \label{sec:generalApproach}
 
-With the aim of complete the main objective mentioned in Sec. \ref{sec:thesisGoals}, a workflow was designed. This work flow contains five stages, some of these were executed multiple times intending to get average values as well as better comparable results along the different exploration tools.
+With the aim of complete the specific objectives and thus the main one, all of them mentioned in Sec.\ref{sec:thesisGoals}, a workflow was designed. This work flow contains five stages.
 
-If a developer or researcher wants to compare a new exploration tool by its coverage he or she should know how many methods there are in the application and how many methods were called during the exploration. To achieve that, the person could count the number of methods in their project and write log lines at the beginning of every method. After that, they will need to compile, run the exploration tool against their application, measure the number of methods that were called during the exploration and compute statistics.
+\begin{enumerate}
+	\item The applications were instrumented using \textbf{InstruAPK.}
+	\item The exploration was made using Droidbot, Monkey, RIP and Firebase Testlab
+	\item The coverage measurement was made using \textbf{CoverageAnalyzer (CA).}
+	\item Summarize data. Total number of unique methods called during all ten executions, reporting only the first time they were called.
+	\item Understanding data, computing statistics, creating graphs, extract insights and concluding.
+\end{enumerate}
 
-With that in mind, this study consists of nearly the same stages, i. instrumentation, ii. exploration, iii. coverage analysis, iv. summarize, and v. compute statistics. The stages ii. and iii. were repeated 10 times for every application that was selected, that leaded to the iv. stage.
+Stages 2. and 3. were repeated 10 times for every application that was selected, that leaded to the stage iv. The multiple executions are intending to get average values as well as better comparable results along the different exploration tools.
 
-The different stages were completed as follow:
-
-Stage i: The applications' instrumentation was made by using \textbf{InstruAPK.}
-
-Stage ii: The exploration was made by four different automatic exploration tools. further information about the tools is given in Sec.\ref{sec:studyDesing}.
-//TODO
-%TODO Move this explanation to the other section
-two from the industry and two from the academic side. The first tool was Firebase Test Lab. it was selected for being widely used in industry and for also being a Google product. The second one, Monkey, was selected for being the most basic one and because it is also included in the SDK for developing Android Apps. The third one, Droidbot, was selected from the academic side. Droidbot has been a point of study for many researches. Many others tools have based their functionality on this tool. The last one is RIP, this tool was selected for being of special interest for us. It is our own exploration tool and is is currently an active project inside the Software Design Lab at University of Los Andes. 
-
-Every tool was executed ten times per application, and every execution with a maximum time of 30 minutes. Some tools ended its exploration before the max time. 
-The number of executions and the maximum time were arbitrary decisions that were made because of time limitations for the study. Although, during the study was notice that most of the tools ended the exploration or reached their maximum coverage within the first 15 minutes. Which means that the maximum time for exploration was more than enough in almost all cases. 
- 
-stage iii: The coverage measurement was made by \textbf{CoverageAnalyzer (CA).}
-
-
-stage iv: Due to the multiple executions of every APK per tool, it is important to summarize de data. The final report contains the total number of unique methods called during all ten executions, reporting only the first time they were called.
-The exploration reports are analysed and filtered as well.
-
-stage v: This is the final stage of the study that involves, understanding data, computing statistics, creating graphs, extract insights and conclusions. 
-
-
-//TODO
-%TODO move this to the study design section
-Besides that, for this study, a set of 11 applications was used. This set is a subset of a set of open source applications utilised inside The Software Design Lab research group for other studies and tests, including RIP. Every APK in the subset should be successfully instrumented by InstruAPK, it should compile without any problem after instrumentation and it should be launch in an emulator without any issue after instrumentation.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{../Figures/workflow.jpg}
+\label{fig:workflow}
+\caption{Main Workflow}
+\end{figure}
 
 
 explicar el workflow de cómo se obtuvieron los resultados.
 
 \textbf{APK processing.} 
 
+In order to measure the method coverage reached by an exploration tool in one application, there is the need to know how many methods there are in the application and how many methods were called during the exploration. To achieve that, \textbf{InstruAPK.} and \textbf{CoverageAnalyzer (CA).} were developed.
+%TODO citate InstruAPK repository
+%TODO citate CA repository
+
 \section{InstruAPK}
 
-It is an instrumentation tool developed mainly for this study. This tool uses APKTool, a known Java application that allows inverse engineering in Android apps, allowing applications' instrumentation without the need of recompiling their source code. APKTool decodes the apk and the result is the smali representation of the app source code, These smali files are analysed in order to find all the methods to be instrumented and then, the log code is injected at the very beginning of each method. Its important to notice that no external libraries methods are instrumented. InstruAPK only search for methods following the android project structure that uses the application package name to store the application source code.
+Instrumentation tool developed mainly for this study. This tool uses APKTool, a known Java application that allows inverse engineering in Android apps, allowing applications' instrumentation without the need of recompiling their source code. APKTool decodes the apk and the result is the smali representation of the app source code, These smali files are analysed in order to find all the methods to be instrumented and then, the log code is injected at the very beginning of each method. Its important to notice that no external libraries methods are instrumented. InstruAPK only search for methods following the android project structure that uses the application package name to store the application source code.
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{../Figures/ClassDiagramInstruAPK.jpg}
+\label{fig:instruAPK}
+\caption{Class Diagram InstruAPK}
+\end{figure}
+
+%TODO explain the architecture and the tool in more detail, do not throw the image and just that.
 \section{Coverage Analyser (CA)}
- It is a Java Application created mainly for this study. This tool analyses the resulting logcat of an Android phone, when executing an application that was instrumented by InstruAPK. It extracts different data such as, number of methods called, number of  methods never called, number of error traces of the application being analysed, most called methods, less called methods, as well as the time stamp of all calls of every method. It is important to notice that the possibility of extracting all those information is because InstruAPK provides it.
+
+Java Application created mainly for this study. This tool extracts all data from the log lines injected by InstruAPK. When an instrumented application is ran, the logcat will contain the log lines with all the data. The logcat is stored in a txt file and that is what CA uses as its input. As CA depends totally on the information provided by InstruAPK, CA can be seen as a complement of it, rather than an separate application.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{../Figures/ClassDiagramCA.jpg}
+\label{fig:ca}
+\caption{Class Diagram Coverage Analyser}
+\end{figure}
+%TODO explain the architecture and the tool in more detail, do not throw the image and just that.

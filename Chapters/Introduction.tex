@@ -3,21 +3,17 @@
 \chapter{Introduction} % Main chapter title
 
 \label{Chapter1} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
- 
-Parafrasear lo que dice aquí, decir que este gran número de aplicaciones por fortuna a llevado a un gran número de estudios para mejorar la cobertura de código que se logra durante las pruebas automáticas, y también cubir diferentes estados del celular como modo avión con carga sin carga y demás, dada la gran cantidad de herramientas, los desarrolladores pueden sentirse sobrecargados, pueden exitir muchas opciones y pueden que no se elija la mejor herramienta. 
-Los desarrolladores necesitan formas de elegir la mejor herramienta que se adapte lo mejor posible a sus necesidades.
 
--------------------------------------------------------------------------
- 
-Mobile markets have pushed and promoted the raising of an interesting phenomenon that has permeated not only developers culture, but also human beings’ daily life activities. Mobile devices, apps, and services are helping companies and organizations to make “digital transformation” possible through services and capabilities that are offered ubiquitously and closer to the users. Nowadays, mobile apps and devices are the most common way for accessing those services and capabilities; in addition, apps and devices are indispensable tools for allowing humans to have in their phones, computational capabilities that make life better and easier.
+Mobile applications market is a continuous growing market. According to Statista, the number of available application, by the 2020, in the two main markets together is 4407000. The great amount of applications means that there is a vast number of users willing to download them, but also means that they can change an application, or even the platform, whenever they desire to, or when something does not fulfil their needs or expectations. Therefore, every day more and more complex applications are launch in the market as well as the users becomes more demanding. As a result, every new application or new functionality should have a good quality, they should work as expected in all different scenarios the distinct users will put them in, they have to be developed very fast and also, they have to be cheap in order to be sustainable for the company who develops them. 
 
-The mobile apps phenomenon has also changed drastically the way how practitioners design, code, and test apps.  Mobile developers and testers face critical challenges on their daily life activities such as (i) continuous pressure from the market for frequent releases of high quality apps, (ii) platform fragmentation at device and OS levels, (iii) rapid platform/library evolution and API instability, and (iv) an evolving market with millions of apps available for being downloaded by ends users \cite{joorabchi2013real,palomba2018crowdsourcing}. Tight release schedules, limited developer and hardware resources, and cross-platform delivery of apps, are common scenarios when developing mobile apps \cite{joorabchi2013real}. Therefore, reducing the time and effort devoted to software engineering tasks while producing high quality mobile software is a ``precious’’ goal.
+The great amount, the complexity, and also the more demanding users make this commerce a very competitive one.
 
-Both practitioners and researchers, have contributed to achieve that goal, by proposing approaches, mechanisms, best practices, and tools that make the development process more agile. For instance, cross-platform languages and frameworks (e.g., Flutter, Ionic, Xamarin, React Native) contribute to reducing the development time by providing developers with a mechanism for building Android and iOS versions of apps in a write-one-run-anywhere way \cite{joorabchi2013real,fazzini2017automated}. Automated testing approaches help testers to increase the apps' quality and reduce the detection/reporting time \cite{choudhary2015automated,kochhar2015understanding,linares2017continuous}. 
-Automated categorization of reviews also helps developers to select relevant information, issues, features and sentiments, from large volume of review that are posted by users \cite{palomba2018crowdsourcing,villarroel2016release,di2016would}. Moreover, approaches for static analysis, are helping developers to early detect different types of bugs and issues that without the automated support could be time consuming for developers --- when doing the analysis manually \cite{li:IST2017}. 
-Both static and dynamic analyses have been used with the aforementioned approaches, with a special preference for static analysis on source code.  
+In order to reach users quality expectations, the frequently releases time of the market and the sustainability needed for the companies, many things have been developed, among them, automated testing. Automated testing has been of high interest for researchers and companies because it lowers the costs of production and it allows better quality products. One of the branches of automated testing is the automatic exploration tools, these tools aim to explore the application as deep as possible and find as many errors as possible. There is a plethora of exploration tools. Every year there are more of them, each one using different exploring strategies. Some of them use random inputs, others use image analysis, others a mixture of these two, and new researches are starting using AI. It is easy to think that the more deep exploration the more errors will be found, but, as will be shown in this text, that is not always the case. The number of errors detected can vary due to the exploration strategy because of the nature of the errors. Furthermore, most of this exploration tools are developed for Android applications.
 
-The developers community is quickly moving towards using cloud-services and crowd-sourced services for software engineering tasks \cite{Leicht2017IEEESoftware, stol2017crowdsourcing}; using those services is becoming a common practice of mobile developers who want to reduce costs and the time devoted for an activity. For example, the Firebase Test Lab platform \cite{firebase} provides automated testing services, in particular, it automatically executes/explores a given app (provided by the developer as an Android APK file), and reports crashes found on a devices matrix that is selected by the user. However, the lack of knowledge of source code internals imposes a limitation on the usefulness and completeness of the results reported back to the users.
+Examples of the automatic exploration tools are Monkey, this tool uses a semi-random generation events strategy to explore the applications, leading to different exploration results unless the same seed is given for the generation of the random events. This tool is the default one provided by Google; Firebase Test Lab, this tools is the only one which is online. Accordingly to its documentation, it analyzes the UI of the applications and explores it simulating users events. They claim to always explore the tool in the same order. Another exploration tool is RIP, an active project inside the University of Los Andes at the research group The Software Design Lab, it explores applications using a model-based GUI testing with multiple comparison criteria. It can lead to different exploration results due to its current implementation as well as to the comparison criteria. 
+
+For developers is important to know the difference between these tools. They need to know the tools that will match the best in the new incoming project to make a good decision. Besides, the project bugged, and application complexity among others things can also affect the decision. The information available to make the decision is most of the time based in what the tools claim to do and if the developers have enough working with more than one then they have some extra information. Though, this information is not completely reliable, it is not objective and can be slanted.
+
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
@@ -25,23 +21,16 @@ The developers community is quickly moving towards using cloud-services and crow
 
 \section{Problem Statement}
 
-// TODO explicar el problema que se quiere solucionar. Para mi es el comparar las diferentes herramientas puede tomar tiempo y elegir la correcta para un proyecto o para una aplicación puede tomar tiempo valioso
-
-%TODO review this section for more changes and make it more understandable.
-
-As it was said in the introduction, the number of automatic exploration tools is increasing daily. With no objective information about them, is necessary developers to explore new tools and compare them with no basis in order to find the best one. It can turns easily in spending valuable time and at the end making the wrong decision, resulting in poor quality final products. In short, the decision of the right automatic exploration tool should be easy, quickly and rely in objective data, such as coverage reached, and number of errors found.
+Accordingly to the previous section, the number of automatic exploration tools is increasing annually. Thus, with no objective information about them, developers  will need to explore new tools and compare them to find the best one. It can turns easily in spending valuable time and at the end in making the wrong decision, resulting in poor quality final products. In short, the decision of the right automatic exploration tool should be easy, quickly and rely in objective data, such as coverage reached, and number of errors found.
 
 \section{Thesis  Goals}\label{sec:thesisGoals}
 
-The main objective of this thesis, is to provide quantitative and qualitative information of the most widely used automatic exploration tools, to facilitate developers in the selection of the right tool that suits their needs. Under those circumstances, the next specific objectives were proposed.
+The main objective of this thesis, is to provide quantitative and qualitative information of the most widely used automatic exploration tools for Android mobile applications, to facilitate developers in the selection of the right tool that suits their needs. Under those circumstances, the next specific objectives were proposed.
 		\begin{enumerate}
 			\item Compare the tools by their exploration coverage 
 			\item Compare the tools by the number of unique error traces discovered while exploring an application.
 			\item Compare the tools using qualitative aspects such as, is the tool a open source project? Is the tool free? Is the tool allowing introduce login values? how useful is the tool report for developer to reproduce, find and fix bugs?
 		\end{enumerate}
-
-
-
 
 \section{Thesis contribution} \label{sec:thesisContribution}
 
