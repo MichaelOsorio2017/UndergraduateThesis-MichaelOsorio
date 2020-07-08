@@ -40,13 +40,11 @@ In stage 3, \textbf{CoverageAnalyzer (CA)} was used to make the coverage measure
 
 %TODO poner referencia de APKAnalyzer https://developer.android.com/studio/command-line/apkanalyzer
 
-Stages 2. and 3. were repeated 10 times for every application that was selected, that leaded to the stage 4. The multiple executions are intending to get average values as well as better comparable results along the different exploration tools. The input for this stage are all the coverage reports from of the stage 3 as well as the exploration report from stage 2. The output is the coverage report are the accumulated coverage by each tool for each application, which was calculated as follows. 
+Stages 2. and 3. were repeated 10 times for every application that was selected, that leaded to the stage 4. The multiple executions are intending to get average values as well as comparable results along the different exploration tools. The input for this stage are all the method coverage reports from of the stage 3 as well as the exploration report from stage 2. The output are the accumulated method coverage by each tool for each application, which was calculated taking the unique methods called over all the ten executions, the average accumulated method coverage over time, as well as the number of errors and its average found per application.
 
-%TODO Explain how was calculated la cobertura acumulada y cómo se calcularon las otras medidas.
+The final stage encompasses data understanding, graphs creation, comparison using the graph and analysis of different qualitative aspects of every exploration tool. Thus, 
 
-The data analysis encompasses data understanding, graphs creation, comparison using the graph and analysis of different qualitative aspects of every exploration tool. Thus, 
-
-This work flow can be reproduced by any person who desires to compare different exploration tools, even the same tools for the instrumentation and the coverage measurement can be use allowing easy and fast comparisons. Consequently, the decision making start to be easier for developers and researchers. Also, gives to researcher the possibility of compare their own exploration tools in a effortless and quickly way.
+Any person can reproduce this work flow who desires to compare different exploration tools, even can make use of the same tools for the instrumentation and the coverage measurement, allowing easy and fast comparisons. Consequently, the decision-making starts to be easier for developers and researchers. Also,gives the possibility to researchers of compare their own exploration tools in a effortless and quick way.
 
 
 %TODO citate InstruAPK repository
@@ -54,7 +52,7 @@ This work flow can be reproduced by any person who desires to compare different 
 
 \section{InstruAPK}\label{sec:instruAPK}
 
-This tool was developed mainly for this study. It uses APKTool, a known Java application that allows inverse engineering in Android apps, allowing applications' instrumentation without the need of recompiling their source code. APKTool decodes the apk and the result is the smali representation of the app source code, These smali files are analysed in order to find all the methods to be instrumented and then, the log code is injected at the very beginning of each method. For this research is important to notice that no external libraries methods are instrumented. InstruAPK only search for methods following the android project structure that uses the application package name to store the application source code.
+This tool was developed mainly for this study. It uses APKTool, a known Java application that allows inverse engineering in Android apps, allowing applications' instrumentation without the need of recompiling their source code. APKTool decodes the apk and the result is the smali representation of the app source code, These smali files are analysed in order to find all the methods to be instrumented and then, the log code is injected at the very beginning of each method. It is important to notice that no external libraries methods are instrumented. InstruAPK only search for methods following the android project structure that uses the application package name to store the application source code.
 
 \begin{figure}[h]
 \centering
