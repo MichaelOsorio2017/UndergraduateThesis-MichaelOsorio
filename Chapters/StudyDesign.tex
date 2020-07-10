@@ -93,63 +93,11 @@ This operator presents two cases we did not consider. Listing \ref{lst:fvbirn1} 
 
 This behavior was found in several mutants.
 
-\begin{minipage}{\textwidth}
-	\begin{lstlisting}[language={sh}, label={lst:fvbirn1}, caption={SMALI representation of findByViewID method call}, numbers=none]
-invoke-virtual {v0, v2}, La2dp/Vol/main;->findViewById(I)Landroid/view/View;
-
-move-result-object v21
-
-check-cast v21, Landroid/widget/Button;
-	\end{lstlisting}
-\end{minipage}\\
-
-\begin{minipage}{\textwidth}
-	\begin{lstlisting}[language={sh}, label={lst:fvbirn2}, caption={SMALI representation of a null value being assigned}, numbers=none]
-const/4 v21, 0x0
-	\end{lstlisting}
-\end{minipage}\\
-
-\begin{minipage}{\textwidth}
-	\begin{lstlisting}[language={sh}, label={lst:fvbirn3}, caption={APKTool console response}, numbers=none]
-I: Using Apktool 2.3.2
-I: Checking whether sources has changed...
-I: Smaling smali folder into classes.dex...
-test\smali\a2dp\Vol\main.smali[4027,4] Invalid register: v21. Must be between v0 and v15, inclusive.
-Could not smali file: a2dp/Vol/main.smali
-	\end{lstlisting}
-\end{minipage}\\
-
 We found that last line of Listing \ref{lst:fvbirn1} that is in charge of checking the type of the result, is not necessary and can be removed in some cases as it can be seen in Listing \ref{lst:fvbirn4} . Therefore, our implementation search for that instruction to recognize the complete set of instructions that will be replaced. Therefore, MutAPK throws an error when trying to match this expression with next line.
-
-\begin{minipage}{\textwidth}
-	\begin{lstlisting}[language={sh}, label={lst:fvbirn4}, caption={APKTool console response}, numbers=none]
-invoke-virtual {v7, v9}, Lcom/angrydoughnuts/android/alarmclock/ActivityAlarmNotification;->
-	findViewById(I)Landroid/view/View;
-	
-move-result-object v7
-	
-invoke-virtual {v7, v12}, Landroid/view/View;->setVisibility(I)V
-	\end{lstlisting}
-\end{minipage}\\
 
 \subsection{4 - InvalidKeyIntentPutExtra}
 
 Listing \ref{lst:ikipe} shows the result of executing the compilation process over half of the mutants from this mutation operator that are non-compilable. As it can be seen in the listing, the process ends succesfully but no apk file is generated. At this point we think that we might be facing an error within APKTool (\textit{i.e., the tool used for assembling/disassembling an APK}).
-
-\begin{minipage}{\textwidth}
-	\begin{lstlisting}[language={sh}, label={lst:ikipe}, caption={Example Output of MutAPK for PhotoStream app}, numbers=none]
-I: Using Apktool 2.3.2
-I: Checking whether sources has changed...
-I: Smaling smali folder into classes.dex...
-I: Checking whether resources has changed...
-I: Building resources...
-S: WARNING: Could not write to (C:\Users\Camilo\AppData\Local\apktool\framework), using C:\Users\Camilo\AppData\Local\Temp\ instead...
-S: Please be aware this is a volatile directory and frameworks could go missing, please utilize --frame-path if the default storage directory is unavailable
-I: Building apk file...
-I: Copying unknown files/dir...
-I: Built apk...
-	\end{lstlisting}
-\end{minipage}\\
 
 If these 4 mutant operators are updated and they do not generate non-compilable mutants, the percentage of non-compilable mutants at APK level (without taking into account the non-shared operators) should be dropped to 0.1\%.
 
