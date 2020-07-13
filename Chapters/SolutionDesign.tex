@@ -11,8 +11,7 @@ With the purpose of achieving the objectives mentioned in Sec.\ref{sec:thesisGoa
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{../Figures/workflow.jpg}
-\label{fig:workflow}
-\caption{Main Workflow}
+\caption{Main Workflow}\label{fig:workflow}
 \end{figure}
 
 For the first stage, \textbf{InstruAPK} (Section \ref{sec:instruAPK}) was used to make the instrumentation of the applications. This tool only takes into account the methods under the package name of the application that is being analysed. As a result, methods from different libraries are not instrumented. The input for this stage is the original APK file, and the output is the instrumented APK together with the instrumentation report containing general information such as the file path, method's name, file name, and the method arguments, as well as a sequential number that will help us to know the total amount of instrumented methods and will work as their unique identifier.
@@ -25,11 +24,11 @@ This stage input is only the instrumented APK file, and its output is the explor
 
 Droidbot, Monkey and Test Lab were selected because of their high use in the industry, and RIP was selected because it is an active project from The Software Design Lab. 
 
-In stage 3, \textbf{CoverageAnalyzer (CA)} (Section \ref{sec:ca}) was used to make the coverage measurement and search for error lines. This stage inputs are the original APK, the instrumentation report and the instrumented APK, both from stage 1, and the logcat from stage 2. Its output is a report containing two method coverage measurements, the first one, calculated using the number of methods reported by APKAnalyzer, a tool provided for Google \MARIO{What do you mean with provided for Google?}, and the second one with the number of instrumented methods reported by InstruAPK.
+In stage 3, \textbf{CoverageAnalyzer (CA)} (Section \ref{sec:ca}) was used to make the coverage measurement and search for error lines. This stage inputs are the original APK, the instrumentation report and the instrumented APK, both from stage 1, and the logcat from stage 2. Its output is a report containing two method coverage measurements, the first one, calculated using the number of methods reported by APKAnalyzer, a tool provided in the Android SDK Tools \MARIO{Citate APKAnalyzer}, and the second one with the number of instrumented methods reported by InstruAPK.
 
 %TODO poner referencia de APKAnalyzer https://developer.android.com/studio/command-line/apkanalyzer
 
-Stages 2. and 3. were repeated 10 times for every application that was selected. The multiple executions are intending to get average values as well as comparable results along the different exploration tools. The input for this stage  \MARIO{What stage?} are all the method coverage reports from of the stage 3 as well as the exploration report from stage 2. The output are the accumulated method coverage by each tool for each application, which was calculated taking the unique methods called over all the ten executions, the average accumulated method coverage over time, as well as the number of errors and its average found per application.
+Stages 2. and 3. were repeated 10 times for every application that was selected. The multiple executions are intending to get average values as well as comparable results along the different exploration tools. On top of that, the input for stage 4 are all the method coverage reports from of the stage 3 as well as the exploration report from stage 2. The output are the accumulated method coverage by each tool for each application, which was calculated taking the unique methods called over all the ten executions, the average accumulated method coverage over time, as well as the number of errors and its average found per application.
 
 The final stage, i.e.,  Stage 5,  encompasses data understanding, graphs creation, comparison using the graph and analysis of different qualitative aspects of every exploration tool. Thus, \MARIO{....}
 
