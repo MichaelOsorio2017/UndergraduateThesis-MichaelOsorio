@@ -6,40 +6,32 @@
 
 \section{General Approach} \label{sec:generalApproach}
 
-With the aim of complete the objectives mentioned in Sec.\ref{sec:thesisGoals}, a workflow was designed. This work flow contains five stages.
-
-\begin{enumerate}
-	\item Instrumentation of the applications
-	\item Exploration
-	\item Coverage measurement
-	\item Summarize data
-	\item Data Analysis
-\end{enumerate}
+With the purpose of achieving the objectives mentioned in Sec.\ref{sec:thesisGoals}, a workflow was designed. This workflow contains five stages: (1) Instrumentation of the applications, (2) Exploration, (3) Coverage measurement, (4) Summarize data, and (5)  Data Analysis. The workflow is depicted in Figure \ref{fig:workflow}.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.8\textwidth]{../Figures/workflow.jpg}
+\includegraphics[width=\textwidth]{../Figures/workflow.jpg}
 \label{fig:workflow}
 \caption{Main Workflow}
 \end{figure}
 
-For the first stage, \textbf{InstruAPK} \ref{sec:instruAPK} was used to make the instrumentation of the applications. This tool only takes into account the methods under the package name of the application that is being analysed. As a result, methods from different libraries are not being taken into count. The input for this stage is the original APK file, and the output is the instrumented APK together with the instrumentation report containing general information such as the file path, method's name, file name, and the method arguments, as well as a sequential number that will help us to know the total amount of instrumented methods and will work as their unique identifier.
+For the first stage, \textbf{InstruAPK} (Section \ref{sec:instruAPK}) was used to make the instrumentation of the applications. This tool only takes into account the methods under the package name of the application that is being analysed. As a result, methods from different libraries are not instrumented. The input for this stage is the original APK file, and the output is the instrumented APK together with the instrumentation report containing general information such as the file path, method's name, file name, and the method arguments, as well as a sequential number that will help us to know the total amount of instrumented methods and will work as their unique identifier.
 
-The exploration was made by four different exploration tools, i. Droidbot, ii. Monkey, iii. Firebase Test Lab, and iv. RIP. Every tool was run to explore with a maximum time of 30 minutes. It is important to notice that, even when the max execution time seems to be short, it was enough for most of the application. This was because of the size of the applications, if the application is small, then the coverage will increase rapidly, because a bug was found during the exploration, or even because the tool marks the exploration as done. 
+The exploration was made with four different exploration tools, (1) Droidbot, (2) Monkey, (3) Firebase Test Lab, and (4) RIP. \MARIO{Add citations for each tool} Every tool was executed to explore  apps with a maximum time of 30 minutes. It is important to notice that, even when the max execution time seems to be short, it was enough for most of the analyzed applications. This was because of the size of the applications: if the application is small, then the coverage will increase rapidly, because a bug was found during the exploration, or even because the tool marks the exploration as done. 
 
-This stage input is only the instrumented APK file, and its output is the exploration report that every tool provides. I took the logcat from the exploration report, but when it was not available in it, as in the case of Monkey, it was extracted by using the adb shell command. The other three tools got the information at the end of their exploration.
+This stage input is only the instrumented APK file, and its output is the exploration report that every tool provides. 
  
 %TODO poner la referencia del comando adb shell para el logcat https://developer.android.com/studio/command-line/logcat
 
-Some of these tools, Droidbot, Monkey and Test Lab, were selected because of their high use in the industry, and the remaining one was selected because of personal interest owing to It is an active project at the University of Los Andes inside the research group The Software Design Lab which I am part of. 
+Droidbot, Monkey and Test Lab were selected because of their high use in the industry, and RIP was selected because it is an active project from The Software Design Lab. 
 
-In stage 3, \textbf{CoverageAnalyzer (CA)} \ref{sec:ca} was used to make the coverage measurement and search for error lines. This stage inputs are the original APK, the instrumentation report and the instrumented APK, both from stage 1, and the logcat from stage 2. Its output is a report containing two method coverage measurements, the first one, calculated using the number of methods reported by APKAnalyzer, a tool provided for Google, and the second one with the number of instrumented methods reported by InstruAPK.
+In stage 3, \textbf{CoverageAnalyzer (CA)} (Section \ref{sec:ca}) was used to make the coverage measurement and search for error lines. This stage inputs are the original APK, the instrumentation report and the instrumented APK, both from stage 1, and the logcat from stage 2. Its output is a report containing two method coverage measurements, the first one, calculated using the number of methods reported by APKAnalyzer, a tool provided for Google \MARIO{What do you mean with provided for Google?}, and the second one with the number of instrumented methods reported by InstruAPK.
 
 %TODO poner referencia de APKAnalyzer https://developer.android.com/studio/command-line/apkanalyzer
 
-Stages 2. and 3. were repeated 10 times for every application that was selected, that leaded to the stage 4. The multiple executions are intending to get average values as well as comparable results along the different exploration tools. The input for this stage are all the method coverage reports from of the stage 3 as well as the exploration report from stage 2. The output are the accumulated method coverage by each tool for each application, which was calculated taking the unique methods called over all the ten executions, the average accumulated method coverage over time, as well as the number of errors and its average found per application.
+Stages 2. and 3. were repeated 10 times for every application that was selected. The multiple executions are intending to get average values as well as comparable results along the different exploration tools. The input for this stage  \MARIO{What stage?} are all the method coverage reports from of the stage 3 as well as the exploration report from stage 2. The output are the accumulated method coverage by each tool for each application, which was calculated taking the unique methods called over all the ten executions, the average accumulated method coverage over time, as well as the number of errors and its average found per application.
 
-The final stage encompasses data understanding, graphs creation, comparison using the graph and analysis of different qualitative aspects of every exploration tool. Thus, 
+The final stage, i.e.,  Stage 5,  encompasses data understanding, graphs creation, comparison using the graph and analysis of different qualitative aspects of every exploration tool. Thus, \MARIO{....}
 
 
 %TODO citate InstruAPK repository
@@ -47,7 +39,7 @@ The final stage encompasses data understanding, graphs creation, comparison usin
 
 \section{InstruAPK}\label{sec:instruAPK}
 
-This tool was developed for this study. It uses APKTool, a known Java application that allows inverse engineering in Android apps, allowing applications' instrumentation without the need of recompiling their source code. APKTool decodes the APK file and its result is the smali representation of the app source code, These smali files are analysed in order to find all the methods to be instrumented at the very beginning of each method. It is important to notice that no external libraries methods are instrumented. InstruAPK only search for methods following the android project structure that uses the application package name to store the application source code.
+This tool was developed for this study. It uses APKTool, a known Java application that allows inverse engineering of Android apps, allowing applications' instrumentation without the need of recompiling their source code. APKTool decodes the APK file and its result is the smali representation of the app source code. These smali files are analyzed in order to find all the methods to be instrumented at the very beginning of each method. It is important to notice that no external libraries methods are instrumented. InstruAPK only searches for methods following the android project structure that uses the application package name to store the application source code.
 
 \begin{figure}[h]
 \centering
