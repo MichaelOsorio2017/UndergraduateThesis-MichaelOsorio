@@ -21,7 +21,7 @@ This stage input is only the instrumented APK file, and its output is the explor
 
 Droidbot, Monkey and Test Lab were selected because of their high use in the industry, and RIP was selected because it is an active project from The Software Design Lab. 
 
-In stage 3, \textbf{CoverageAnalyzer (CA)} (Section \ref{sec:ca}) was used to make the coverage measurement and search for error lines. This stage inputs are the original APK, the instrumentation report and the instrumented APK, both from stage 1, and the logcat from stage 2. Its output is a report containing two method coverage measurements, the first one, calculated using the number of methods reported by APKAnalyzer, a tool provided in the Android SDK Tools \MARIO{Citate APKAnalyzer}, and the second one with the number of instrumented methods reported by InstruAPK.
+In stage 3, \textbf{CoverageAnalyzer (CA)} (Section \ref{sec:ca}) was used to make the coverage measurement and search for error lines. This stage inputs are the original APK, the instrumentation report and the instrumented APK, both from stage 1, and the logcat from stage 2. Its output is a report containing two method coverage measurements, the first one, calculated using the number of methods reported by APKAnalyzer \footcite{https://developer.android.com/studio/command-line/apkanalyzer}, a tool provided in the Android SDK Tools, and the second one with the number of instrumented methods reported by InstruAPK.
 
 %TODO poner referencia de APKAnalyzer https://developer.android.com/studio/command-line/apkanalyzer
 
