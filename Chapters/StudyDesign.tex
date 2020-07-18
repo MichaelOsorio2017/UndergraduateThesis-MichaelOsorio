@@ -22,7 +22,7 @@ The aim of this paper is to provide information about some of the most used auto
 
 With the purpose of answering the research questions, 11 applications where selected to be executed. The list of selected apps can be seen in Figure.\ref{tab:apps}. This set is a subset of a set of open source applications utilised inside The Software Design Lab research group for other studies and tests, including RIP. Every APK in the subset should be successfully instrumented by InstruAPK, it should compile without any problem after instrumentation and it should be launch in an emulator without any issue after the instrumentation process.
 
-Equally important, four exploration tools where selected, two from the industry and two from the academic side. The first tool was Firebase Test Lab (Section \ref{sec:testlab}). it was selected for being widely used in industry and for also being a Google product. The second one, Monkey \footcite{https://developer.android.com/studio/test/monkey}, was selected for being the most basic one. It is by default included in the Android SDK Tools. The third one, Droidbot (Section \ref{sec:droidbot}), was selected from the academic side. Droidbot has been a point of study for many researches. Many others tools have based their functionality on this tool. The last one is RIP (Section \ref{sec:rip}), this tool was selected for being of special interest for us. It is our own exploration tool and is is currently an active project inside the Software Design Lab at University of Los Andes. 
+Equally important, four exploration tools where selected, two from the industry and two from the academic side. The first tool was Firebase Test Lab (Section \ref{sec:testlab}). it was selected for being widely used in industry and for also being a Google product. The second one, Monkey \footnote{https://developer.android.com/studio/test/monkey}, was selected for being the most basic one. It is by default included in the Android SDK Tools. The third one, Droidbot (Section \ref{sec:droidbot}), was selected from the academic side. Droidbot has been a point of study for many researches. Many others tools have based their functionality on this tool. The last one is RIP (Section \ref{sec:rip}), this tool was selected for being of special interest for us. It is our own exploration tool and is is currently an active project inside the Software Design Lab at University of Los Andes. 
 
 Every tool was executed ten times per application, and every execution with a maximum time of 30 minutes. Some tools ended its exploration before the max time. 
 The number of executions and the maximum time were arbitrary decisions that were made because of time limitations for the study. Although, during the study was notice that most of the tools ended the exploration or reached their maximum coverage within the first 15 minutes. Which means that the maximum time for exploration was more than enough in almost all cases. 
@@ -53,7 +53,7 @@ The same emulator was used for all the exploration tools, in exception to Fireba
 	}
 \end{table}
 
-Finally, the work flow specified in Section \ref{sec:workflow} was follow for every application using the named exploration tools. 
+Finally, the work flow specified in Section \ref{sec:generalApproach} was follow for every application using the named exploration tools. 
 
 \section{Results}\label{sec:results}
 
@@ -85,7 +85,7 @@ For calculate this, both data was used, the method coverage according InstruAPK 
 \caption{Average Method Coverage by Tool According APKAnalyzer}\label{fig:averageCoverageAPKAnalyzer}
 \end{figure}
 
-The answer for RQ-1 can be seen easily in figure \ref{fig:coverageInstruAPK} or figure \ref{fig:averageCoverageAPKAnalyzer}. Firebase Test Lab is the tool with the highest average method coverage reached. Surprisingly, followed by Monkey, even when monkey has no complex architecture nor exploration strategy, it has the second highest average method coverage within this study.
+The answer for RQ-1 can be seen easily in figure \ref{fig:averageCoverageInstruAPK} or figure \ref{fig:averageCoverageAPKAnalyzer}. Firebase Test Lab is the tool with the highest average method coverage reached. Surprisingly, followed by Monkey, even when monkey has no complex architecture nor exploration strategy, it has the second highest average method coverage within this study.
 
 For answering RQ-2 is know that, for every execution the called methods are stored, every method has an unique id that was given during the instrumentation. Thus, after the 10 executions of an application, the result of every execution is analysed searching for the methods that have not been called neither during previous explorations nor during the current one. Therefore, the number of unique methods called in that application is obtained. That is what is named as accumulated coverage. This results can be seen in figure \ref{fig:boxplotAccumulated}. The coverage presented in figure \ref{fig:boxplotAccumulated} was calculated using the number of instrumented methods reported by InstruAPK. 
 

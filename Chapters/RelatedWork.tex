@@ -1,49 +1,42 @@
 % Chapter Template
 
 \chapter{Related work} % Main chapter title
-
-
 \label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-%----------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
 Every exploration tool provides different numbers, and comparisons made during their creation, this in order to show their advantages, but not for sure their weaknesses. This information does not allow developers neither researchers to know what are the best tools as of now or how good a tool matches their projects. 
-Choudhary \textit{et al.}, \MARIO{CITE} give about the strengths and weaknesses of seven tools in their study \textit{``Automated Test Input Generation for Android: Are We There Yet?``}. They evaluate the tools using four metrics i. ease
+\cite{Choudhary, Gorla, Orso} gave informations about the strengths and weaknesses of seven tools in their study \textit{``Automated Test Input Generation for Android: Are We There Yet?``}. They evaluated the tools using four metrics i. ease
 of use, ii. ability to work on multiple platforms, iii. code coverage, and iv.
 ability to detect faults. 14 Tools and 68 applications were used in total in their study. Running 10 times every application in seven of the 14 tools for a maximum of 60 minutes.
 
-Moreover, different tools have been developed since Choudhary \textit{et al.} \MARIO{CITE} study was made. 
+Moreover, different tools have been developed since \cite{Choudhary, Gorla, Orso} study was made.
 
 \section{Crawldroid}\label{sec:crawldroid}
-\MARIO{CITE}
 
-This tool uses a model-based GUI testing technique. Its purpose is to avoid local and repetitive exploration, by grouping widgets and then adjust the groups priority depending on previous steps and the results of the widgets already actioned. 
+Crawldroid \cite{Cao, Yuzhong and Wu, Guoquan and Chen, Wei and Wei, Jun} uses a model-based GUI testing technique. Its purpose is to avoid local and repetitive exploration, by grouping widgets and then adjust the groups priority depending on previous steps and the results of the widgets already actioned. 
 
-This tools makes part of a study named \textit{``CrawlDroid: Effective Model-based GUI Testing of Android Apps``}where the authors made a comparison between this tool and some others in order to know how good is their tool. Using a tool called ELLA \footcite{https://github.com/saswatanand/ella} for its coverage measurement. ELLA provides information about method and activity coverage.
+This tools makes part of a study named \textit{``CrawlDroid: Effective Model-based GUI Testing of Android Apps``}where the authors made a comparison between this tool and some others in order to know how good is their tool. Using a tool called ELLA \footnote{https://github.com/saswatanand/ella} for its coverage measurement. ELLA provides information about method and activity coverage.
 
 Crawldroid was not used in this study because it was not possible to make it work. The setup of the tool was not possible. The were tries to contact with the authors but no answer was received from them.
 
 \section{Droidbot}\label{sec:droidbot}
-\MARIO{CITE}
-Droidbot is a Lightweight exploration tool that does not need instrumentation in order to work. Droidbot is able to generate UI-guided test inputs using a state transition model that is generated while exploring the application. It is a open source project.
+Droidbot \cite{Yuanchun Li} is a Lightweight exploration tool that does not need instrumentation in order to work. Droidbot is able to generate UI-guided test inputs using a state transition model that is generated while exploring the application. It is a open source project.
 
 This tool is also a open source project and it makes part of a study, where their authors explains that the tool can calculate different metrics by using the Android official profiling tool. Their approach can follow the trace of the methods that are triggered when a new widget is clicked or when a event is prompt. Besides, if the number of methods is available they will also calculate the coverage reached in the exploration.
 
-\section{Firebase Test Lab}\label{sec:testlab} \footcite{https://firebase.google.com/}
-\MARIO{Cite https://firebase.google.com/}
+\section{Firebase Test Lab}\label{sec:testlab}
 
-This is a Google product. This tool is different to the others because it does not make part of research and also because it is available in the cloud, the users should create an account on it, create a project, upload the apk and the run the test. This is the unique exploration tool that is run in this way. Different from the other tools mentioned in this chapter, this is the only one that has a paid version. It reports no coverage values, but number of visited activities.
+Firebase Test Lab \footnote{https://firebase.google.com/}, is a Google product. This tool is different to the others because it does not make part of research and also because it is available in the cloud, the users should create an account on it, create a project, upload the apk and the run the test. This is the unique exploration tool that is run in this way. Different from the other tools mentioned in this chapter, this is the only one that has a paid version. It reports no coverage values, but number of visited activities.
 
 \section{RIP}\label{sec:rip}
-https://ieeexplore.ieee.org/abstract/document/8530063/
-\MARIO{CITE}
 
-This tool is an active project at The University of Los Andes in charge of The Software Design Lab, this tool is designed to take into account multiple variables during the exploration. Variables such as, context of the application while exploring an activity, the GUI elements presented in one activity. The purpose of this extra information is to provide a better quality testing. 
+RIP \cite{Liñán, Bello-Jiménez, Arévalo, Linares-Vásquez} is an active project at The University of Los Andes in charge of The Software Design Lab, this tool is designed to take into account multiple variables during the exploration. Variables such as, context of the application while exploring an activity, the GUI elements presented in one activity. The purpose of this extra information is to provide a better quality testing. 
 
 This tool is also part of a research named "Automated Extraction of Augmented Models for Android Apps". where their authors claim that all this new information is necessary owing to the complexity of mobile applications. Thus, when more information is recorded and less variables are unknown, bugs reproduction will be easier.
 
 RIP does not contains any coverage metrics by default, its coverage should be calculated by using a different tool. It only provides information about what activities visited, what events triggered to get from one state to another, and some other extra information later discussed.
 
-As can be seen, non of the aforementioned tools were discussed in Choudhary \textit{et al.} \MARIO{[CITE]} work. Most probably because by the time they made the research, none of them existed. This creates a gap between the available information for developers and researches and the current automatic exploration tools. As a result, this study aims to provide information about some of the newest tools that are being used in the industry and the academy. Giving a better overview of nowadays automatic exploration tools.
+As can be seen, non of the aforementioned tools were discussed in \cite{Choudhary, Gorla, Orso} work. Most probably because by the time they made the research, none of them existed. This creates a gap between the available information for developers and researches and the current automatic exploration tools. As a result, this study aims to provide information about some of the newest tools that are being used in the industry and the academy. Giving a better overview of nowadays automatic exploration tools.
