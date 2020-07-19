@@ -9,25 +9,24 @@
 %----------------------------------------------------------------------------------------
 \section{Study Design}\label{sec:studydesign}
 
-The aim of this paper is to provide information about some of the most used automatic exploration tools for android applications inside the industry and the academy. This information is going to be useful for developers and researchers when they face a decision-making situation related to the selection of the right exploration tool that fits their needs. In consequence, a empirical study was designed and will provide answers for the following research questions: 
+The aim of this paper is to provide information about some of the most used automatic exploration tools for android applications inside the industry and the academy. This information is going to be useful for developers and researchers when they face a decision-making situation related to the selection of the right exploration tool that fits their needs. In consequence, an empirical study was designed and will provide answers for the following research questions: 
 
 \begin{itemize}
 \item RQ-1 What tool reaches the highest average method coverage?
 \item RQ-2 What tool reaches the highest accumulated method coverage?
-\item RQ-3 What tool finds the highest number of failures during the explorations?
-\item RQ-4 what tool has the highest average of found errors?
+\item RQ-3 What tool finds the largest number of failures during the explorations?
+\item RQ-4 what tool has the top average value of errors found across different apps?
 \end{itemize}
 
 \section{Context of the Study}
 
-With the purpose of answering the research questions, 11 applications where selected to be executed. The list of selected apps can be seen in Figure.\ref{tab:apps}. This set is a subset of a set of open source applications utilised inside The Software Design Lab research group for other studies and tests, including RIP. Every APK in the subset should be successfully instrumented by InstruAPK, it should compile without any problem after instrumentation and it should be launch in an emulator without any issue after the instrumentation process.
+With the purpose of answering the research questions, 11 applications where selected to be executed. The list of selected apps can be seen in Figure.\ref{tab:apps}. This set is a subset of a set of open source applications widely used by  The Software Design Lab for other studies and tests. Every APK in the subset should be successfully instrumented by InstruAPK, it should compile without any problem after instrumentation and it should be launched in an emulator without any issue after the instrumentation process.
 
-Equally important, four exploration tools where selected, two from the industry and two from the academic side. The first tool was Firebase Test Lab (Section \ref{sec:testlab}). it was selected for being widely used in industry and for also being a Google product. The second one, Monkey \footnote{https://developer.android.com/studio/test/monkey}, was selected for being the most basic one. It is by default included in the Android SDK Tools. The third one, Droidbot (Section \ref{sec:droidbot}), was selected from the academic side. Droidbot has been a point of study for many researches. Many others tools have based their functionality on this tool. The last one is RIP (Section \ref{sec:rip}), this tool was selected for being of special interest for us. It is our own exploration tool and is is currently an active project inside the Software Design Lab at University of Los Andes. 
+Equally important, four exploration tools were selected, two from the industry and two from the academic side. The first tool is Firebase Test Lab (Section \ref{sec:testlab}). It was selected for being widely used in industry and for also being a Google product. The second one, Monkey \footnote{https://developer.android.com/studio/test/monkey}, was selected as a baseline because it is the state-of-the-art and practice tool for inputs generation; it is by default included in the Android SDK Tools. The third one, Droidbot (Section \ref{sec:droidbot}), was selected from the academic side. Droidbot has been a point of study for many researches. Many others tools have based their functionality on this tool. The last one is RIP (Section \ref{sec:rip}), this tool was selected for being of special interest for us. It is our own exploration tool and it is currently an active project inside the Software Design Lab at University of Los Andes. 
 
-Every tool was executed ten times per application, and every execution with a maximum time of 30 minutes. Some tools ended its exploration before the max time. 
-The number of executions and the maximum time were arbitrary decisions that were made because of time limitations for the study. Although, during the study was notice that most of the tools ended the exploration or reached their maximum coverage within the first 15 minutes. Which means that the maximum time for exploration was more than enough in almost all cases. 
+Each tool was executed ten times per application and with a maximum time of 30 minutes. The number of executions and the maximum time were arbitrary decisions that were made because of time limitations for the study. During the study we noticed that most of the tools ended the exploration or reached their maximum coverage within the first 15 minutes. Which means that the maximum time for exploration was more than enough in almost all cases. 
 
-The same emulator was used for all the exploration tools, in exception to Firebase Test Lab because this tool offers its own set of emulators. In all the cases a Pixel 2 XL was used, but in the cases of Monkey, Droidbot and RIP there was more control over the device specifications.For the case of the last mentioned tools the specifications are: Google APIs Intel Atom (x86), API level 27, SD card size of 512MB, and RAM size of 4096MB. This specifications are unknown for the case of Test Lab.
+The same emulator was used for all the exploration tools, except for Firebase Test Lab because this tool offers its own set of emulators. In all the cases a Pixel 2 XL was used, but in the cases of Monkey, Droidbot and RIP there was more control over the device specifications. For the case of the last mentioned tools the specifications of the emulator used with the experiments are:  Google APIs Intel Atom (x86), API level 27, SD card size of 512MB, and RAM size of 4096MB. The specifications are unknown for the case of Test Lab.
 
 \begin{table}[t]
 	\centering
@@ -53,16 +52,16 @@ The same emulator was used for all the exploration tools, in exception to Fireba
 	}
 \end{table}
 
-Finally, the work flow specified in Section \ref{sec:generalApproach} was follow for every application using the named exploration tools. 
+Finally, the work flow specified in Section \ref{sec:generalApproach} was followed for each application by using the aforementioned exploration tools. 
 
 \section{Results}\label{sec:results}
 
 \subsection{Method Coverage Results}\label{sec:coverageResults}
 
-As mentioned before, some explorations ended before the max execution time allowed (30 minutes). giving no data for the upcoming seconds. To solve this scenarios, the coverage reached by the tool in the second the exploration ends, was kept the same until complete the total time. Once this have been done, the results are comparable second by second.
+As mentioned before, some explorations ended before the max execution time allowed (30 minutes) giving no data for the upcoming seconds. To solve this scenarios, the coverage reached by the tool at the moment when the exploration ends, was kept the same until completing the total time. Once this have been done, the results are comparable second by second.
 
 
-As a result of the instrumentation made by InstruAPK, the timestamp of every called method is know, so that, the coverage reached by a tool in a specific second can be calculated. The aforementioned information was used to calculate the average method coverage reached for every tool. Such results are presented in figure \ref{fig:averageCoverageInstruAPK} and figure \ref{fig:averageCoverageAPKAnalyzer}. The data were calculated as follow: 
+As a result of the instrumentation made by InstruAPK, the timestamp of every called method is known, thus, the coverage reached by a tool in a specific second can be calculated. The aforementioned information was used to calculate the average method coverage reached for every tool across the 11 analyzed apps. Such results are presented in figure \ref{fig:averageCoverageInstruAPK} and figure \ref{fig:averageCoverageAPKAnalyzer}. The data were calculated as follow:  \MARIO{Please use a formula to explain how the average was calculated, I mean, the same described here should be understood with the formula}
 
 \begin{enumerate}
 \item For every exploration of an application add the coverage reached for tool second by second without adding the results of the previous seconds.
@@ -99,7 +98,7 @@ So, again, the tool at first place is Firebase Test Lab, but this time, the seco
 
 \subsection{Error Results}\label{sec:errorResults}
 
-Two different values for the errors were calculated. first, the total number of different error traces found by a tool throughout all the explorations. That is what is shown in figure \ref{fig:maxerrors}. The second one, show in figure \ref{fig:averagaerrors}, is the average number of errors found by tool throughout all the explorations. 
+Two different values for the errors were calculated. first, the total number of different error traces found by a tool throughout all the explorations (see Figure \ref{fig:maxerrors}). The second one, shown in Figure \ref{fig:averagaerrors}, is the average number of errors found by tool throughout all the explorations. 
 
 \begin{figure}[h]
 \centering
@@ -113,7 +112,7 @@ Two different values for the errors were calculated. first, the total number of 
 \caption{Average Number of Errors Found by Tool}\label{fig:averagaerrors}
 \end{figure}
 
-This numbers were extracted by CoverageAnalyzer (Section \ref{sec:ca}). The number includes android runtime exceptions as well as exceptions. The tool searches for stack traces in the logcat file and filters the results using the package name of the tool under analysis. 
+These numbers were extracted by CoverageAnalyzer (Section \ref{sec:ca}). The numbers includes android runtime exceptions as well as exceptions. The tool searches for stack traces in the logcat file and filters the results using the package name of the tool under analysis. 
 
-This data give the responses for RQ-3 and RQ-4. Which in both cases is Monkey.
+This data give the responses for RQ-3 and RQ-4. Which in both cases is Monkey.\MARIO{Say explicitly the answer to the questions}
 
