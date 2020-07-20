@@ -12,10 +12,10 @@
 The aim of this paper is to provide information about some of the most used automatic exploration tools for android applications inside the industry and the academy. This information is going to be useful for developers and researchers when they face a decision-making situation related to the selection of the right exploration tool that fits their needs. In consequence, an empirical study was designed and will provide answers for the following research questions: 
 
 \begin{itemize}
-\item RQ-1 What tool reaches the highest average method coverage?
-\item RQ-2 What tool reaches the highest accumulated method coverage?
-\item RQ-3 What tool finds the largest number of failures during the explorations?
-\item RQ-4 what tool has the top average value of errors found across different apps?
+
+\item RQ-1 What tool reaches the highest accumulated method coverage?
+\item RQ-2 What tool finds the largest number of failures during the explorations?
+\item RQ-3 what tool has the top average value of errors found across different apps?
 \end{itemize}
 
 \section{Context of the Study}
@@ -26,13 +26,13 @@ Equally important, four exploration tools were selected, two from the industry a
 
 Each tool was executed ten times per application and with a maximum time of 30 minutes. The number of executions and the maximum time were arbitrary decisions that were made because of time limitations for the study. During the study we noticed that most of the tools ended the exploration or reached their maximum coverage within the first 15 minutes. Which means that the maximum time for exploration was more than enough in almost all cases. 
 
-The same emulator was used for all the exploration tools, except for Firebase Test Lab because this tool offers its own set of emulators. In all the cases a Pixel 2 XL was used, but in the cases of Monkey, Droidbot and RIP there was more control over the device specifications. For the case of the last mentioned tools the specifications of the emulator used with the experiments are:  Google APIs Intel Atom (x86), API level 27, SD card size of 512MB, and RAM size of 4096MB. The specifications are unknown for the case of Test Lab.
+The same emulator was used for all the exploration tools, except for Firebase Test Lab because this tool offers its own set of emulators. In all the cases a Pixel 2 XL was used, but in the cases of Monkey, Droidbot and RIP there was more control over the device specifications. For the case of the last mentioned tools the specifications of the emulator used within the experiment are:  Google APIs Intel Atom (x86), API level 27, SD card size of 512MB, and RAM size of 4096MB. The specifications are unknown for the case of Test Lab.
 
 \begin{table}[t]
 	\centering
 	\caption{Applications used for the study}
 	\label{tab:apps}
-	\resizebox{0.80\textwidth}{!}{
+	\resizebox{\textwidth}{!}{
 		\begin{tabular}{c c c c}
 			App ID & Package Name & \# Methods Reported by APKAnalyzer & \# Methods Instrumented by InstruAPK\\
 			\hline
@@ -61,7 +61,7 @@ Finally, the work flow specified in Section \ref{sec:generalApproach} was follow
 As mentioned before, some explorations ended before the max execution time allowed (30 minutes) giving no data for the upcoming seconds. To solve this scenarios, the coverage reached by the tool at the moment when the exploration ends, was kept the same until completing the total time. Once this have been done, the results are comparable second by second.
 
 
-As a result of the instrumentation made by InstruAPK, the timestamp of every called method is known, thus, the coverage reached by a tool in a specific second can be calculated. The aforementioned information was used to calculate the average method coverage reached for every tool across the 11 analyzed apps. Such results are presented in figure \ref{fig:averageCoverageInstruAPK} and figure \ref{fig:averageCoverageAPKAnalyzer}. The data were calculated as follow:  \MARIO{Please use a formula to explain how the average was calculated, I mean, the same described here should be understood with the formula}
+As a result of the instrumentation made by InstruAPK, the timestamp of every called method is known, thus, the coverage reached by a tool in a specific second can be calculated. The aforementioned information was used to calculate the average accumulated method coverage reached for every tool across the 11 analysed apps. Such results are presented in figure \ref{fig:averageCoverageInstruAPK} and figure \ref{fig:averageCoverageAPKAnalyzer}. The data were calculated as follow:
 
 \begin{enumerate}
 \item For every exploration of an application add the coverage reached for tool second by second without adding the results of the previous seconds.
@@ -70,19 +70,21 @@ As a result of the instrumentation made by InstruAPK, the timestamp of every cal
 \item Divide by the number of applications (This will end in the average method coverage of a tool for all the applications)
 \end{enumerate} 
 
-For calculate this, both data was used, the method coverage according InstruAPK and APKAnalyzer. The curves, have the same behaviour, as expected, but in Figure \ref{fig:averageCoverageAPKAnalyzer} the gap between tools is more visible.
+For calculating this, both data were used, the method coverage calculated by using the number of instrumented methods reported by InstruAPK and the number of methods reported by APKAnalyzer. The curves have the same behaviour, as expected, but in Figure \ref{fig:averageCoverageAPKAnalyzer} gap between tools is more visible.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{../Figures/averageCoverageInstruAPK.pdf}
-\caption{Average Method Coverage by Tool According InstruAPK}\label{fig:averageCoverageInstruAPK}
+\caption{Average Accumulated Method Coverage by Tool According to the Number of Instrumented Methods Reported by InstruAPK}\label{fig:averageCoverageInstruAPK}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{../Figures/averageCoverageAPKAnalyzer.pdf}
-\caption{Average Method Coverage by Tool According APKAnalyzer}\label{fig:averageCoverageAPKAnalyzer}
+\caption{Average Accumulated Method Coverage by Tool According to the Number of Methods Reported by APKAnalyzer}\label{fig:averageCoverageAPKAnalyzer}
 \end{figure}
+
+\MARIO{Terminar de escribir aquí ahora que no hay RQ-1}
 
 The answer for RQ-1 can be seen easily in figure \ref{fig:averageCoverageInstruAPK} or figure \ref{fig:averageCoverageAPKAnalyzer}. Firebase Test Lab is the tool with the highest average method coverage reached. Surprisingly, followed by Monkey, even when monkey has no complex architecture nor exploration strategy, it has the second highest average method coverage within this study.
 
