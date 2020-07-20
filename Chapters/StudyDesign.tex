@@ -63,37 +63,48 @@ As mentioned before, some explorations ended before the max execution time allow
 
 As a result of the instrumentation made by InstruAPK, the timestamp of every called method is known, thus, the coverage reached by a tool in a specific second can be calculated. The aforementioned information was used to calculate the average accumulated method coverage reached for every tool across the 11 analysed apps. Such results are presented in figure \ref{fig:averageCoverageInstruAPK} and figure \ref{fig:averageCoverageAPKAnalyzer}. The data were calculated as follow:
 
-\begin{enumerate}
-\item For every exploration of an application add the coverage reached for tool second by second without adding the results of the previous seconds.
-\item Divide by the number of explorations by tool. (This results in the average method coverage reached by a tool in one application)
-\item Add the results of the previous step. (By tool)
-\item Divide by the number of applications (This will end in the average method coverage of a tool for all the applications)
-\end{enumerate} 
+Lets take $A$ as the set of applications, $N$ as the number of explorations, $t$ as time in seconds (for this study $0<t<1800$, and T as the exploration tool, then we have
+\begin{align}
+  g(a_{T,t}) &= \frac{\sum_{i=1}^{n} Coverage(T,t,a)}{N}\label{eq:g} 
+\end{align}
+Where $Coverage(T,t,a)$ is the instantaneous coverage of tool T in second t for the application a. Which means, the new methods called by tool T in second t.
+\begin{align}
+f(T_t) &= \frac{\sum_{a \in A} g(a_{T,t})}{|A|} \label{eq:f}
+\end{align}
+\begin{align}
+H(T_t)=\begin{cases}
+		H(T_{t-1})& \text{if the exploration has end},\\ 
+		f(T_t)+H(T_{t-1})& \text{if still exploring},\\
+		f(T_0)& \text{if $t = 0$}.\label{eq:h}
+	\end{cases}
+\end{align}
 
-For calculating this, both data were used, the method coverage calculated by using the number of instrumented methods reported by InstruAPK and the number of methods reported by APKAnalyzer. The curves have the same behaviour, as expected, but in Figure \ref{fig:averageCoverageAPKAnalyzer} gap between tools is more visible.
+Thus, equation \ref{eq:g} is the average coverage of tool T for application a in time t; equation \ref{eq:f} is the average exploration of tool T in time t; and, \ref{eq:h} is what is called \textit{progressive coverage} of tool T in time t. 
+
+Thus, equation \ref{eq:h} is what is shown in figures \ref{fig:averageCoverageInstruAPK} and \ref{fig:averageCoverageAPKAnalyzer}. For coverage in figure \ref{fig:averageCoverageInstruAPK}, equation \ref{eq:g} was calculated using the number of instrumented methods by InstruAPK and for figure \ref{fig:averageCoverageAPKAnalyzer} the number of methods reported by APKAnalyzer. The curves have the same behaviour, as expected, but in Figure \ref{fig:averageCoverageAPKAnalyzer} gap between tools is more visible.
+
+Additionally, for every execution the called methods are stored, every method has an unique id that was given during the instrumentation. Thus, after the 10 executions of an application,every execution result could be analysed searching for the methods that have not been called neither during previous explorations nor during the current one. Therefore, the number of unique methods called for one application during all 10 exploration can be obtained. That is what is named as \textit{achieved coverage} and can be seen in figure \ref{fig:boxplotAccumulated}. The coverage presented in figure \ref{fig:boxplotAccumulated} was calculated only by using the number of instrumented methods by InstruAPK. 
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{../Figures/averageCoverageInstruAPK.pdf}
-\caption{Average Accumulated Method Coverage by Tool According to the Number of Instrumented Methods Reported by InstruAPK}\label{fig:averageCoverageInstruAPK}
+\caption{Average Progressive Method Coverage by Tool According to the Number of Instrumented Methods Reported by InstruAPK}\label{fig:averageCoverageInstruAPK}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{../Figures/averageCoverageAPKAnalyzer.pdf}
-\caption{Average Accumulated Method Coverage by Tool According to the Number of Methods Reported by APKAnalyzer}\label{fig:averageCoverageAPKAnalyzer}
+\caption{Average Progressive Method Coverage by Tool According to the Number of Methods Reported by APKAnalyzer}\label{fig:averageCoverageAPKAnalyzer}
 \end{figure}
 
 \MARIO{Terminar de escribir aquí ahora que no hay RQ-1}
 
-The answer for RQ-1 can be seen easily in figure \ref{fig:averageCoverageInstruAPK} or figure \ref{fig:averageCoverageAPKAnalyzer}. Firebase Test Lab is the tool with the highest average method coverage reached. Surprisingly, followed by Monkey, even when monkey has no complex architecture nor exploration strategy, it has the second highest average method coverage within this study.
-
-For answering RQ-2 is know that, for every execution the called methods are stored, every method has an unique id that was given during the instrumentation. Thus, after the 10 executions of an application, the result of every execution is analysed searching for the methods that have not been called neither during previous explorations nor during the current one. Therefore, the number of unique methods called in that application is obtained. That is what is named as accumulated coverage. This results can be seen in figure \ref{fig:boxplotAccumulated}. The coverage presented in figure \ref{fig:boxplotAccumulated} was calculated using the number of instrumented methods reported by InstruAPK. 
+The answer for RQ-1 can be seen easily in figure \ref{fig:averageCoverageInstruAPK} and figure \ref{fig:averageCoverageAPKAnalyzer}. Firebase Test Lab is the tool with the highest average method coverage reached. Surprisingly, followed by Monkey, even when monkey has no complex architecture nor exploration strategy, it has the second highest average method coverage within this study.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{../Figures/boxplotAccumulated.pdf}
-\caption{Boxplot of Accumulated Coverage by Tool}\label{fig:boxplotAccumulated}
+\caption{Coverage Achieved by Tool}\label{fig:boxplotAccumulated}
 \end{figure}
 
 So, again, the tool at first place is Firebase Test Lab, but this time, the second tool with the highest value is Droidbot.
