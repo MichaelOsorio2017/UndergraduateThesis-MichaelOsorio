@@ -9,7 +9,7 @@
 %----------------------------------------------------------------------------------------
 \section{Study Design}\label{sec:studydesign}
 
-The aim of this paper is to provide information about some of the most used automatic exploration tools for android applications inside the industry and the academy. This information is going to be useful for developers and researchers when they face a decision-making situation related to the selection of the right exploration tool that fits their needs. In consequence, an empirical study was designed and will provide answers for the following research questions: 
+This paper aims to provide information about some of the most used automatic exploration tools for android applications inside the industry and the academy. This information is going to be useful for developers and researchers when they face a decision-making situation related to the selection of the right exploration tool that fits their needs. In consequence, an empirical study was designed and will provide answers for the following research questions: 
 
 \begin{itemize}
 
@@ -20,18 +20,17 @@ The aim of this paper is to provide information about some of the most used auto
 
 \section{Context of the Study}
 
-With the purpose of answering the research questions, 11 applications where selected to be executed. The list of selected apps can be seen in Figure.\ref{tab:apps}. This set is a subset of a set of open source applications widely used by  The Software Design Lab for other studies and tests. Every APK in the subset should be successfully instrumented by InstruAPK, it should compile without any problem after instrumentation and it should be launched in an emulator without any issue after the instrumentation process.
+To answer the research questions, 11 applications were selected to be executed. The list of selected apps can be seen in Figure.\ref{tab:apps}. This set is a subset of a set of open source applications widely used by  The Software Design Lab for other studies and tests. Every APK in the subset should be successfully instrumented by InstruAPK, it should compile without any problem after instrumentation and it should be launched in an emulator without any issue after the instrumentation process.
 
-Equally important, four exploration tools were selected, two from the industry and two from the academic side. The first tool is Firebase Test Lab (Section \ref{sec:testlab}). It was selected for being widely used in industry and for also being a Google product. The second one, Monkey \footnote{https://developer.android.com/studio/test/monkey}, was selected as a baseline because it is the state-of-the-art and practice tool for inputs generation; it is by default included in the Android SDK Tools. The third one, Droidbot (Section \ref{sec:droidbot}), was selected from the academic side. Droidbot has been a point of study for many researches. Many others tools have based their functionality on this tool. The last one is RIP (Section \ref{sec:rip}), this tool was selected for being of special interest for us. It is our own exploration tool and it is currently an active project inside the Software Design Lab at University of Los Andes. 
+Equally important, four exploration tools were selected, two from the industry and two from the academic side. The first tool is Firebase Test Lab (Section \ref{sec:testlab}). It was selected for being widely used in industry and for also being a Google product. The second one, Monkey \footnote{https://developer.android.com/studio/test/monkey}, was selected as a baseline because it is the state-of-the-art and practice tool for inputs generation; it is by default included in the Android SDK Tools. The third one, Droidbot (Section \ref{sec:droidbot}), was selected from the academic side. Droidbot has been a point of study for many pieces of research. Many other tools have based their functionality on this tool. The last one is RIP (Section \ref{sec:rip}). It was selected for being of special interest for us. It is our exploration tool, and it is currently an active project inside the Software Design Lab at the University of Los Andes. 
 
-Each tool was executed ten times per application and with a maximum time of 30 minutes. The number of executions and the maximum time were arbitrary decisions that were made because of time limitations for the study. During the study we noticed that most of the tools ended the exploration or reached their maximum coverage within the first 15 minutes. Which means that the maximum time for exploration was more than enough in almost all cases. 
+Each tool was executed ten times per application and with a maximum time of 30 minutes. The number of executions and the maximum time was arbitrary decisions that were made because of time limitations for the study. During the study, we noticed that most of the tools ended the exploration or reached their maximum coverage within the first 15 minutes. That means that the maximum exploration time was more than enough in almost all cases. 
 
-The same emulator was used for all the exploration tools, except for Firebase Test Lab because this tool offers its own set of emulators. In all the cases a Pixel 2 XL was used, but in the cases of Monkey, Droidbot and RIP there was more control over the device specifications. For the case of the last mentioned tools the specifications of the emulator used within the experiment are:  Google APIs Intel Atom (x86), API level 27, SD card size of 512MB, and RAM size of 4096MB. The specifications are unknown for the case of Test Lab.
+The same emulator was used for all the exploration tools, except for Firebase Test Lab because this tool offers its own set of emulators. In all the cases a Pixel 2 XL was used, but in the case of Monkey, Droidbot and RIP there was more control over the device specifications. For the last-mentioned tools, the specifications of the emulator used within the experiment are Google APIs Intel Atom (x86), API level 27, SD card size of 512MB, and RAM size of 4096MB. The specifications are unknown for the case of Test Lab.
 
 \begin{table}[t]
 	\centering
-	\caption{Applications used for the study}
-	\label{tab:apps}
+	\caption{Applications used for the study} \label{tab:apps}
 	\resizebox{\textwidth}{!}{
 		\begin{tabular}{c c c c}
 			App ID & Package Name & \# Methods Reported by APKAnalyzer & \# Methods Instrumented by InstruAPK\\
@@ -52,18 +51,18 @@ The same emulator was used for all the exploration tools, except for Firebase Te
 	}
 \end{table}
 
-Finally, the work flow specified in Section \ref{sec:generalApproach} was followed for each application by using the aforementioned exploration tools. 
+Finally, the workflow specified in section \ref{sec:generalApproach} was followed for each application in table \ref{tab:apps} by using the aforementioned exploration tools. 
 
 \section{Results}\label{sec:results}
 
 \subsection{Method Coverage Results}\label{sec:coverageResults}
 
-As mentioned before, some explorations ended before the max execution time allowed (30 minutes) giving no data for the upcoming seconds. To solve this scenarios, the coverage reached by the tool at the moment when the exploration ends, was kept the same until completing the total time. Once this have been done, the results are comparable second by second.
-
+As mentioned before, some explorations ended before the max execution time allowed (30 minutes) giving no data for the upcoming seconds. To solve those scenarios, the coverage reached by the tool at the moment when the exploration end was kept the same until completing the total time. Once this has been done, the results are comparable second by second.
 
 As a result of the instrumentation made by InstruAPK, the timestamp of every called method is known, thus, the coverage reached by a tool in a specific second can be calculated. The aforementioned information was used to calculate the average accumulated method coverage reached for every tool across the 11 analysed apps. Such results are presented in figure \ref{fig:averageCoverageInstruAPK} and figure \ref{fig:averageCoverageAPKAnalyzer}. The data were calculated as follow:
 
-Lets take $A$ as the set of applications, $N$ as the number of explorations, $t$ as time in seconds (for this study $0<t<1800$, and T as the exploration tool, then we have
+Let's take $A$ as the set of applications; $N$ as the number of explorations; $t$ as time in seconds (for this study $0<t<1800$, and T as the exploration tool, then we have:
+
 \begin{align}
   g(a_{T,t}) &= \frac{\sum_{i=1}^{n} Coverage(T,t,a)}{N}\label{eq:g} 
 \end{align}
@@ -78,12 +77,11 @@ H(T_t)=\begin{cases}
 		f(T_0)& \text{if $t = 0$}.\label{eq:h}
 	\end{cases}
 \end{align}
-
 Thus, equation \ref{eq:g} is the average coverage of tool T for application a in time t; equation \ref{eq:f} is the average exploration of tool T in time t; and, \ref{eq:h} is what is called \textit{progressive coverage} of tool T in time t. 
 
 Thus, equation \ref{eq:h} is what is shown in figures \ref{fig:averageCoverageInstruAPK} and \ref{fig:averageCoverageAPKAnalyzer}. For coverage in figure \ref{fig:averageCoverageInstruAPK}, equation \ref{eq:g} was calculated using the number of instrumented methods by InstruAPK and for figure \ref{fig:averageCoverageAPKAnalyzer} the number of methods reported by APKAnalyzer. The curves have the same behaviour, as expected, but in Figure \ref{fig:averageCoverageAPKAnalyzer} gap between tools is more visible.
 
-Additionally, for every execution the called methods are stored, every method has an unique id that was given during the instrumentation. Thus, after the 10 executions of an application,every execution result could be analysed searching for the methods that have not been called neither during previous explorations nor during the current one. Therefore, the number of unique methods called for one application during all 10 exploration can be obtained. That is what is named as \textit{achieved coverage} and can be seen in figure \ref{fig:boxplotAccumulated}. The coverage presented in figure \ref{fig:boxplotAccumulated} was calculated only by using the number of instrumented methods by InstruAPK. 
+Additionally, for every execution the called methods are stored, every method has a unique id that was given during the instrumentation. Thus, after the 10 executions of an application, every execution result could be analysed searching for the methods that have been called neither during previous explorations nor during the current one. Therefore, the number of unique methods called for one application during all 10 explorations can be obtained. That is what is named as \textit{achieved coverage} and can be seen in figure \ref{fig:boxplotAccumulated}. The coverage presented in figure \ref{fig:boxplotAccumulated} was calculated only by using the number of instrumented methods by InstruAPK. 
 
 \begin{figure}[h]
 \centering
@@ -110,8 +108,9 @@ As can be seen, the dot for every tool in figure \ref{fig:boxplotAccumulated} ar
 
 \subsection{Error Results}\label{sec:errorResults}
 
-Thanks to CoverageAnalyzer, it is possible to stablish the number of error traces found by an exploration tool. As explained before, CA analyses the logcat and extracts the error traces and filter them using the package name of the app under analysis. That is how the results for 
-figure \ref{fig:maxerrors} and figure \ref{fig:averagaerrors} were obtained. The first graph shows only the top value found after manually analysing the results for every exploration, and the second one represents the average number of errors found across all the executions. 
+Thanks to CoverageAnalyzer, it is possible to establish the number of error traces found by an exploration tool. As explained before, CA analyses the logcat and extracts the error traces and filter them using the package name of the app under analysis. That is how the results for 
+figure \ref{fig:maxerrors} and figure \ref{fig:averagaerrors} were obtained. The first graph shows only the top value found after manually analysing the results for every exploration, and the second one represents the average number of errors found across all the executions.
+ 
 
 \begin{figure}[h]
 \centering
@@ -125,4 +124,4 @@ figure \ref{fig:maxerrors} and figure \ref{fig:averagaerrors} were obtained. The
 \caption{Average Number of Errors Found by Tool During all the explorations}\label{fig:averagaerrors}
 \end{figure}
 
-Thus, Monkey is the tool with the largest number of failures found during one exploration (RQ-2), as well as the one with the top average errors found during all the explorations (RQ-3). 
+Thus, Monkey is the tool with the top number of failures found during one exploration (RQ-2), as well as the one with the highest average errors found during all explorations (RQ-3).
