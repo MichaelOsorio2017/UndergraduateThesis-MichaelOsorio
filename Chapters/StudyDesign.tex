@@ -14,8 +14,8 @@ The aim of this paper is to provide information about some of the most used auto
 \begin{itemize}
 
 \item RQ-1 What tool reaches the highest accumulated method coverage?
-\item RQ-2 What tool finds the largest number of failures during the explorations?
-\item RQ-3 what tool has the top average value of errors found across different apps?
+\item RQ-2 What tool finds the largest number of failures during one exploration?
+\item RQ-3 what tool has the top average value of errors found across different apps during all the explorations?
 \end{itemize}
 
 \section{Context of the Study}
@@ -97,35 +97,32 @@ Additionally, for every execution the called methods are stored, every method ha
 \caption{Average Progressive Method Coverage by Tool According to the Number of Methods Reported by APKAnalyzer}\label{fig:averageCoverageAPKAnalyzer}
 \end{figure}
 
-\MARIO{Terminar de escribir aquí ahora que no hay RQ-1}
-
-The answer for RQ-1 can be seen easily in figure \ref{fig:averageCoverageInstruAPK} and figure \ref{fig:averageCoverageAPKAnalyzer}. Firebase Test Lab is the tool with the highest average method coverage reached. Surprisingly, followed by Monkey, even when monkey has no complex architecture nor exploration strategy, it has the second highest average method coverage within this study.
-
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{../Figures/boxplotAccumulated.pdf}
 \caption{Coverage Achieved by Tool}\label{fig:boxplotAccumulated}
 \end{figure}
 
-So, again, the tool at first place is Firebase Test Lab, but this time, the second tool with the highest value is Droidbot.
+
+Hence, RQ-1 was responded using graphs \ref{fig:averageCoverageInstruAPK}, \ref{fig:averageCoverageAPKAnalyzer}, and \ref{fig:boxplotAccumulated}. Firebase Test Lab is the tool with the highest progressive average method coverage reached. Surprisingly, followed by Monkey, even when Monkey has no complex architecture nor exploration strategy. In the case of achieved coverage, Firebase Test Lab keeps the lead with the highest values, but now Droidbot is the tool in second place. Nevertheless, the results for Droidbot are very fluctuating, making again Monkey, the second tool with the second-best results. 
+
+As can be seen, the dot for every tool in figure \ref{fig:boxplotAccumulated} are the max values reached in figure \ref{fig:averageCoverageInstruAPK}. So, the last graph mentioned will be the description of how each tool reached its value through time.
 
 \subsection{Error Results}\label{sec:errorResults}
 
-Two different values for the errors were calculated. first, the total number of different error traces found by a tool throughout all the explorations (see Figure \ref{fig:maxerrors}). The second one, shown in Figure \ref{fig:averagaerrors}, is the average number of errors found by tool throughout all the explorations. 
+Thanks to CoverageAnalyzer, it is possible to stablish the number of error traces found by an exploration tool. As explained before, CA analyses the logcat and extracts the error traces and filter them using the package name of the app under analysis. That is how the results for 
+figure \ref{fig:maxerrors} and figure \ref{fig:averagaerrors} were obtained. The first graph shows only the top value found after manually analysing the results for every exploration, and the second one represents the average number of errors found across all the executions. 
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{../Figures/maxErrors.pdf}
-\caption{Maximum Number of Errors Found by Tool}\label{fig:maxerrors}
+\caption{Maximum Number of Errors Found by Tool in One Exploration}\label{fig:maxerrors}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{../Figures/averageErrors.pdf}
-\caption{Average Number of Errors Found by Tool}\label{fig:averagaerrors}
+\caption{Average Number of Errors Found by Tool During all the explorations}\label{fig:averagaerrors}
 \end{figure}
 
-These numbers were extracted by CoverageAnalyzer (Section \ref{sec:ca}). The numbers includes android runtime exceptions as well as exceptions. The tool searches for stack traces in the logcat file and filters the results using the package name of the tool under analysis. 
-
-This data give the responses for RQ-3 and RQ-4. Which in both cases is Monkey.\MARIO{Say explicitly the answer to the questions}
-
+Thus, Monkey is the tool with the largest number of failures found during one exploration (RQ-2), as well as the one with the top average errors found during all the explorations (RQ-3). 
