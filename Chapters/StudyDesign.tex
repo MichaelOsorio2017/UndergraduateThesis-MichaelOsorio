@@ -77,7 +77,10 @@ H(T_t)=\begin{cases}
 		f(T_0)& \text{if $t = 0$}.\label{eq:h}
 	\end{cases}
 \end{align}
-Thus, equation \ref{eq:g} is the average coverage of tool T for application a in time t; equation \ref{eq:f} is the average exploration of tool T in time t; and, \ref{eq:h} is what is called \textit{progressive coverage} of tool T in time t. 
+
+Thus, equation \ref{eq:g} is the average coverage of tool $T$ for application $a$ in time $t$ for the $N$ executions; equation \ref{eq:f} is the average coverage of tool $T$ in time $t$ across the $N$ executions and all the apps; and, \ref{eq:h} is what is called \textit{accumulative average coverage} of tool $T$ in time $t$ across all apps and the $N$ executions. 
+
+\MARIO{explicar que se midió por milisegundos y el t sería durante el segundo t y no en el tiempo t}
 
 Thus, equation \ref{eq:h} is what is shown in figures \ref{fig:averageCoverageInstruAPK} and \ref{fig:averageCoverageAPKAnalyzer}. For coverage in figure \ref{fig:averageCoverageInstruAPK}, equation \ref{eq:g} was calculated using the number of instrumented methods by InstruAPK and for figure \ref{fig:averageCoverageAPKAnalyzer} the number of methods reported by APKAnalyzer. The curves have the same behaviour, as expected, but in Figure \ref{fig:averageCoverageAPKAnalyzer} gap between tools is more visible.
 
@@ -86,13 +89,13 @@ Additionally, for every execution the called methods are stored, every method ha
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{../Figures/averageCoverageInstruAPK.pdf}
-\caption{Average Progressive Method Coverage by Tool According to the Number of Instrumented Methods Reported by InstruAPK}\label{fig:averageCoverageInstruAPK}
+\caption{Accumulated Average Method Coverage by Tool According to the Number of Instrumented Methods Reported by InstruAPK}\label{fig:averageCoverageInstruAPK}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{../Figures/averageCoverageAPKAnalyzer.pdf}
-\caption{Average Progressive Method Coverage by Tool According to the Number of Methods Reported by APKAnalyzer}\label{fig:averageCoverageAPKAnalyzer}
+\caption{Accumulated Average Method Coverage by Tool According to the Number of Methods Reported by APKAnalyzer}\label{fig:averageCoverageAPKAnalyzer}
 \end{figure}
 
 \begin{figure}[h]
